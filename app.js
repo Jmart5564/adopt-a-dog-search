@@ -21,12 +21,12 @@ async function handlePageLoad() {
     age = params.get('age') || 0;
     // age (make sure a number, default to 0)
     page = Number(params.get('page')) || 1;
-    const start = (page - 1) * pageSize;
-    const end = (page * pageSize) - 1;
     // page (make sure a number, default to 1)
     // pageSize (make sure a number, default to 5)
     pageSize = Number(params.get('pageSize')) || 5;
     // calculate start and end of range from page and pageSize
+    const start = (page - 1) * pageSize;
+    const end = (page * pageSize) - 1;
 
     const { data, count } = await getDogs(breed, age, { start, end });
     dogs = data;
@@ -45,7 +45,7 @@ function handleFilter(breed, age) {
     window.location.search = params.toString();
 }
 
-function handlePaging(change, pageSize, size) {
+function handlePaging(change, pageSize) {
     const params = new URLSearchParams(window.location.search);
     // *** set page and pageSize params based on change and PageSize
     // make sure page not less than 1
