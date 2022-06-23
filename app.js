@@ -36,9 +36,12 @@ async function handlePageLoad() {
     display();
 }
 
-function handleFilter(filter) {
+function handleFilter(breed, age) {
     const params = new URLSearchParams(window.location.search);
     // *** set breed, age, and page params based on filter
+    params.set('breed', breed);
+    params.set('age', age);
+    params.set('page', 1);
     window.location.search = params.toString();
 }
 
@@ -46,6 +49,15 @@ function handlePaging(change, pageSize) {
     const params = new URLSearchParams(window.location.search);
     // *** set page and pageSize params based on change and PageSize
     // make sure page not less than 1
+    if (page === pageSize) {
+        page = Math.max(1, page + change);
+    }
+    else {
+        page = 1;
+    }
+
+    params.set('page', page);
+    params.set('pageSize', pageSize);
     window.location.search = params.toString();
 }
 
