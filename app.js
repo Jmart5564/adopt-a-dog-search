@@ -45,11 +45,11 @@ function handleFilter(breed, age) {
     window.location.search = params.toString();
 }
 
-function handlePaging(change, pageSize) {
+function handlePaging(change, pageSize, size) {
     const params = new URLSearchParams(window.location.search);
     // *** set page and pageSize params based on change and PageSize
     // make sure page not less than 1
-    if (page === pageSize) {
+    if (pageSize) {
         page = Math.max(1, page + change);
     }
     else {
